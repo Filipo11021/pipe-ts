@@ -9,7 +9,7 @@ type ValidatePipeArgs<Input, Fns extends unknown[]> = Fns extends [
   (arg: infer FnInput) => infer FnOutput,
   ...infer Rest,
 ]
-  ? Input extends FnInput
+  ? [Input] extends [FnInput]
     ? [(arg: FnInput) => FnOutput, ...ValidatePipeArgs<FnOutput, Rest>]
     : never
   : [];

@@ -67,4 +67,12 @@ describe("generic pipe", () => {
     // @ts-expect-error - message returns a string, but isEven expects a number, so the types do not match
     pipe(2, message, isEven);
   });
+
+  it("", () => {
+    const unionReturnTypeFn = (n: number): string | number => n;
+    const double = (n: number) => n * 2;
+
+    // @ts-expect-error - unionReturnTypeFn returns a string or number, but double expects a number
+    expect(pipe(2, unionReturnTypeFn, double)).toBe(4);
+  });
 });
