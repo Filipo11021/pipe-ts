@@ -75,4 +75,9 @@ describe("manual pipe", () => {
     // @ts-expect-error - unionReturnTypeFn returns a string or number, but double expects a number
     expect(pipe(2, unionReturnTypeFn, double)).toBe(4);
   });
+
+  it("should throw a type error if the second argument is not a function", () => {
+    // @ts-expect-error - second argument should be a function
+    expect(() => pipe("test", "test")).toThrow(TypeError);
+  });
 });
